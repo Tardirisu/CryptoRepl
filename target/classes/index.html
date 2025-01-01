@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoRepl Frontend</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+        }
+        input, select, button {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>CryptoRepl</h1>
+    <!-- Input for plain/cipher text -->
+    <label for="text">Enter Text:</label><br>
+    <input type="text" id="text" placeholder="Enter plain/cipher text"><br>
+
+    <!-- Dropdown for selecting algorithm -->
+    <label for="algorithm">Choose Algorithm:</label><br>
+    <select id="algorithm">
+        <option value="Caesar">Caesar Cipher</option>
+        <option value="Vigenere">Vigenère Cipher</option>
+    </select><br>
+
+    <!-- Input for the key -->
+    <label for="key">Enter Key:</label><br>
+    <input type="number" id="key" placeholder="Enter key (e.g., 3 for Caesar)"><br>
+
+    <!-- Buttons for encrypt/decrypt -->
+    <button onclick="performOperation('encrypt')">Encrypt</button>
+    <button onclick="performOperation('decrypt')">Decrypt</button>
+
+    <!-- Display result -->
+    <div id="result"></div>
+</div>
+
+<script>
+        async function performOperation(operation) {
+            const text = document.getElementById("text").value;
+            const algorithm = document.getElementById("algorithm").value;
+            const key = document.getElementById("key").value;
+
+            if (!text || !algorithm || !key) {
+                alert("Please fill in all fields!");
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:8080/crypto/${operation}?text=${encodeURIComponent(text)}&key=${key}&algorithm=${algorithm}`);
+                if (response.ok) {
+                    const result = await response.text();
+                    document.getElementById("result").innerText = `Result: ${result}`;
+                } else {
+                    document.getElementById("result").innerText = "Error: Something went wrong!";
+                }
+            } catch (error) {
+                document.getElementById("result").innerText = `Error: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoRepl Frontend</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <h1>CryptoRepl</h1>
+
+    <!-- Algorithm Selection -->
+    <label for="algorithm">Select Algorithm:</label>
+    <select id="algorithm" onchange="onAlgorithmChange()">
+        <option value="Caesar">Caesar Cipher</option>
+        <option value="MonoSub">Mono-alphabetic Substitution Cipher</option>
+        <option value="Vigenere">Vigenère Cipher</option>
+    </select><br>
+
+    <!-- Input for plain/cipher text -->
+    <label for="text">Enter Text:</label>
+    <textarea id="text" placeholder="Enter plain/cipher text"></textarea><br>
+
+    <!-- Input for the key -->
+    <label for="key">Enter Key:</label>
+    <input type="text" id="key" placeholder="Enter key (e.g., 3 for Caesar, SECRET for Vigenère)"><br>
+
+    <!-- Buttons for encrypt/decrypt -->
+    <button onclick="performOperation('encrypt')">Encrypt</button>
+    <button onclick="performOperation('decrypt')">Decrypt</button>
+
+    <!-- Display result -->
+    <label for="text">Result:</label>
+    <div id="result">
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+.container {
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+textarea, select, button {
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+}
+textarea {
+    height: 150px;
+    resize: none; /* Prevent resizing */
+}
+#result {
+    margin-top: 20px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+    min-height: 150px;
+    overflow-wrap: break-word;
+}
+label {
+    font-size: 18px;
+    font-weight: bold;
+}
